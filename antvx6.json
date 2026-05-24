@@ -1,0 +1,304 @@
+{
+  "Transform": "Terraform-to-AntVX6-DataDriven-Heuristic",
+  "Metadata": {
+    "Generator": "Manuel - E-Commerce Microservices AWS",
+    "GeneratedAt": "2026-05-24T00:00:00.000Z",
+    "Statistics": {
+      "TotalCells": 19,
+      "TotalEdges": 17
+    }
+  },
+  "X6": {
+    "nodes": [
+      {
+        "id": "aws_cloudfront.cdn",
+        "shape": "aws-resource",
+        "label": "CloudFront CDN",
+        "data": {
+          "resourceType": "arch_amazon_cloudfront",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/32/Arch_Amazon-CloudFront_32.svg"
+        }
+      },
+      {
+        "id": "aws_waf.waf",
+        "shape": "aws-resource",
+        "label": "WAF",
+        "data": {
+          "resourceType": "arch_aws_waf",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Security-Identity/32/Arch_AWS-WAF_32.svg"
+        }
+      },
+      {
+        "id": "aws_cognito.user_auth",
+        "shape": "aws-resource",
+        "label": "Cognito User Auth",
+        "data": {
+          "resourceType": "arch_amazon_cognito",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Security-Identity/32/Arch_Amazon-Cognito_32.svg"
+        }
+      },
+      {
+        "id": "aws_apigateway.api_gw",
+        "shape": "aws-resource",
+        "label": "API Gateway",
+        "data": {
+          "resourceType": "arch_amazon_api_gateway",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/32/Arch_Amazon-API-Gateway_32.svg"
+        }
+      },
+      {
+        "id": "group_event_bus",
+        "shape": "aws-group",
+        "label": "Event Bus",
+        "data": {
+          "isCluster": true,
+          "resourceType": "virtual_private_cloud_vpc",
+          "icon": "AwsIcones/Architecture-Group-Icons_01302026/Virtual-private-cloud-VPC_32.svg"
+        }
+      },
+      {
+        "id": "aws_sns.topics",
+        "shape": "aws-resource",
+        "label": "SNS Topics",
+        "parent": "group_event_bus",
+        "data": {
+          "resourceType": "arch_amazon_simple_notification_service",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Application-Integration/32/Arch_Amazon-Simple-Notification-Service_32.svg"
+        }
+      },
+      {
+        "id": "aws_sqs.queues",
+        "shape": "aws-resource",
+        "label": "SQS Queues",
+        "parent": "group_event_bus",
+        "data": {
+          "resourceType": "arch_amazon_simple_queue_service",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Application-Integration/32/Arch_Amazon-Simple-Queue-Service_32.svg"
+        }
+      },
+      {
+        "id": "group_microservices",
+        "shape": "aws-group",
+        "label": "Microservices (ECS Fargate - Private Subnet)",
+        "data": {
+          "isCluster": true,
+          "resourceType": "private_subnet",
+          "icon": "AwsIcones/Architecture-Group-Icons_01302026/Private-subnet_32.svg"
+        }
+      },
+      {
+        "id": "aws_ecs.shopping_cart",
+        "shape": "aws-resource",
+        "label": "Shopping Cart",
+        "parent": "group_microservices",
+        "data": {
+          "resourceType": "arch_amazon_elastic_container_service",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Containers/32/Arch_Amazon-Elastic-Container-Service_32.svg"
+        }
+      },
+      {
+        "id": "aws_ecs.product_catalog",
+        "shape": "aws-resource",
+        "label": "Product Catalog",
+        "parent": "group_microservices",
+        "data": {
+          "resourceType": "arch_amazon_elastic_container_service",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Containers/32/Arch_Amazon-Elastic-Container-Service_32.svg"
+        }
+      },
+      {
+        "id": "aws_ecs.order_management",
+        "shape": "aws-resource",
+        "label": "Order Management",
+        "parent": "group_microservices",
+        "data": {
+          "resourceType": "arch_amazon_elastic_container_service",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Containers/32/Arch_Amazon-Elastic-Container-Service_32.svg"
+        }
+      },
+      {
+        "id": "aws_ecs.checkout",
+        "shape": "aws-resource",
+        "label": "Checkout",
+        "parent": "group_microservices",
+        "data": {
+          "resourceType": "arch_amazon_elastic_container_service",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Containers/32/Arch_Amazon-Elastic-Container-Service_32.svg"
+        }
+      },
+      {
+        "id": "aws_ecs.payment_processing",
+        "shape": "aws-resource",
+        "label": "Payment Processing",
+        "parent": "group_microservices",
+        "data": {
+          "resourceType": "arch_amazon_elastic_container_service",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Containers/32/Arch_Amazon-Elastic-Container-Service_32.svg"
+        }
+      },
+      {
+        "id": "group_data_stores",
+        "shape": "aws-group",
+        "label": "Data Stores",
+        "data": {
+          "isCluster": true,
+          "resourceType": "virtual_private_cloud_vpc",
+          "icon": "AwsIcones/Architecture-Group-Icons_01302026/Virtual-private-cloud-VPC_32.svg"
+        }
+      },
+      {
+        "id": "aws_elasticache.cart_cache",
+        "shape": "aws-resource",
+        "label": "Cart Cache (ElastiCache)",
+        "parent": "group_data_stores",
+        "data": {
+          "resourceType": "arch_amazon_elasticache",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Databases/32/Arch_Amazon-ElastiCache_32.svg"
+        }
+      },
+      {
+        "id": "aws_rds.products_db",
+        "shape": "aws-resource",
+        "label": "Products DB (Aurora)",
+        "parent": "group_data_stores",
+        "data": {
+          "resourceType": "arch_amazon_aurora",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Databases/32/Arch_Amazon-Aurora_32.svg"
+        }
+      },
+      {
+        "id": "aws_rds.orders_db",
+        "shape": "aws-resource",
+        "label": "Orders DB (RDS)",
+        "parent": "group_data_stores",
+        "data": {
+          "resourceType": "arch_amazon_rds",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Databases/32/Arch_Amazon-RDS_32.svg"
+        }
+      },
+      {
+        "id": "aws_dynamodb.payments",
+        "shape": "aws-resource",
+        "label": "Payments (DynamoDB)",
+        "parent": "group_data_stores",
+        "data": {
+          "resourceType": "arch_amazon_dynamodb",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Databases/32/Arch_Amazon-DynamoDB_32.svg"
+        }
+      },
+      {
+        "id": "aws_cloudwatch.monitoring",
+        "shape": "aws-resource",
+        "label": "CloudWatch",
+        "data": {
+          "resourceType": "arch_amazon_cloudwatch",
+          "icon": "AwsIcones/Architecture-Service-Icons_01302026/Arch_Management-Tools/32/Arch_Amazon-CloudWatch_32.svg"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge_cdn_waf",
+        "source": "aws_cloudfront.cdn",
+        "target": "aws_waf.waf",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_waf_apigw",
+        "source": "aws_waf.waf",
+        "target": "aws_apigateway.api_gw",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_cognito_apigw",
+        "source": "aws_cognito.user_auth",
+        "target": "aws_apigateway.api_gw",
+        "attrs": { "line": { "stroke": "#ff9900", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_apigw_shopping",
+        "source": "aws_apigateway.api_gw",
+        "target": "aws_ecs.shopping_cart",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_apigw_product",
+        "source": "aws_apigateway.api_gw",
+        "target": "aws_ecs.product_catalog",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_apigw_order",
+        "source": "aws_apigateway.api_gw",
+        "target": "aws_ecs.order_management",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_apigw_checkout",
+        "source": "aws_apigateway.api_gw",
+        "target": "aws_ecs.checkout",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_sns_sqs",
+        "source": "aws_sns.topics",
+        "target": "aws_sqs.queues",
+        "attrs": { "line": { "stroke": "#e91e8c", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_sqs_payment",
+        "source": "aws_sqs.queues",
+        "target": "aws_ecs.payment_processing",
+        "attrs": { "line": { "stroke": "#e91e8c", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_checkout_sns",
+        "source": "aws_ecs.checkout",
+        "target": "aws_sns.topics",
+        "attrs": { "line": { "stroke": "#e91e8c", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_shopping_cache",
+        "source": "aws_ecs.shopping_cart",
+        "target": "aws_elasticache.cart_cache",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_product_aurora",
+        "source": "aws_ecs.product_catalog",
+        "target": "aws_rds.products_db",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_order_rds",
+        "source": "aws_ecs.order_management",
+        "target": "aws_rds.orders_db",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_payment_dynamo",
+        "source": "aws_ecs.payment_processing",
+        "target": "aws_dynamodb.payments",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_checkout_payment",
+        "source": "aws_ecs.checkout",
+        "target": "aws_ecs.payment_processing",
+        "attrs": { "line": { "stroke": "#A2B1C3", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_order_cloudwatch",
+        "source": "aws_ecs.order_management",
+        "target": "aws_cloudwatch.monitoring",
+        "attrs": { "line": { "stroke": "#7c3aed", "strokeWidth": 1.5, "targetMarker": "block" } }
+      },
+      {
+        "id": "edge_payment_cloudwatch",
+        "source": "aws_ecs.payment_processing",
+        "target": "aws_cloudwatch.monitoring",
+        "attrs": { "line": { "stroke": "#7c3aed", "strokeWidth": 1.5, "targetMarker": "block" } }
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+resource "aws_cloudwatch_log_group" "ecs_logs" {
+  for_each = toset(local.services)
+  name              = "/ecs/${var.project_name}/${each.key}"
+  retention_in_days = 14
+}
+
+resource "aws_cloudwatch_log_group" "api_gw_logs" {
+  name              = "/aws/apigateway/${var.project_name}-api"
+  retention_in_days = 14
+}
